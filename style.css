@@ -189,14 +189,8 @@ body {
     border: 1px solid rgba(255,255,255,0.05);
     position: relative;
 }
-.image-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
 
-/* Kombin Animasyon Sınıfları */
+/* Karakter Animasyon Sınıfları */
 .anim-wave { animation: waveEffect 0.6s ease infinite alternate; }
 .anim-sing { animation: singEffect 0.4s ease infinite alternate; }
 .anim-scare { animation: scareEffect 0.3s ease; }
@@ -206,17 +200,17 @@ body {
 .anim-heart { animation: heartEffect 0.5s ease infinite alternate; }
 .anim-dance { animation: danceEffect 0.5s ease infinite alternate; }
 .anim-pinch { animation: pinchEffect 0.4s ease infinite alternate; }
-.anim-sit { transform: scale(0.95) translateY(10px); }
+.anim-sit { transform: scale(0.95) translateY(12px); }
 .anim-crazy { animation: crazyEffect 0.3s ease infinite; }
 
-@keyframes waveEffect { 0% { transform: rotate(0deg); } 100% { transform: rotate(4deg) scale(1.02); } }
-@keyframes singEffect { 0% { transform: translateY(0); } 100% { transform: translateY(-4px); } }
+@keyframes waveEffect { 0% { transform: rotate(0deg); } 100% { transform: rotate(6deg) scale(1.02); } }
+@keyframes singEffect { 0% { transform: translateY(0); } 100% { transform: translateY(-5px); } }
 @keyframes scareEffect { 0% { transform: scale(1); } 50% { transform: scale(1.1) skewX(5deg); filter: hue-rotate(90deg); } 100% { transform: scale(1); } }
 @keyframes fallEffect { 0% { transform: rotate(0deg) translateY(0); } 100% { transform: rotate(25deg) translateY(20px); opacity: 0.8; } }
 @keyframes circleEffect { 0% { transform: scale(1); } 50% { transform: scale(1.04) rotate(2deg); } 100% { transform: scale(1); } }
 @keyframes micEffect { 0% { transform: scale(1); } 100% { transform: scale(1.03); } }
 @keyframes heartEffect { 0% { transform: scale(1); } 100% { transform: scale(1.06); } }
-@keyframes danceEffect { 0% { transform: translateX(-4px) rotate(-2deg); } 100% { transform: translateX(4px) rotate(2deg); } }
+@keyframes danceEffect { 0% { transform: translateX(-5px) rotate(-3deg); } 100% { transform: translateX(5px) rotate(3deg); } }
 @keyframes pinchEffect { 0% { transform: scale(1); } 100% { transform: scale(1.02); } }
 @keyframes crazyEffect { 0% { transform: translate(-2px, -2px) rotate(-1deg); } 100% { transform: translate(2px, 2px) rotate(1deg); } }
 
@@ -354,5 +348,5 @@ body {
     max-width: 600px;
     line-height: 1.6;
     margin-bottom: 25px;
-  }
-  
+    }
+                                 
