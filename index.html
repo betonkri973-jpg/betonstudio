@@ -30,7 +30,7 @@
     <!-- How to Play Screen -->
     <div id="howToPlayScreen" class="screen">
         <h2>Nasıl Oynanır?</h2>
-        <p>Stüdyo ortamında tamamen koda çizilmiş özel karakterimiz seninle! Sağ taraftaki kutucuklardan farklı kombinleri seçerek karakterin kıyafetlerini değiştirebilir, özel animasyonlarını ve ses efektlerini deneyimleyebilirsin.</p>
+        <p>Stüdyo ortamında ana karakterimiz seninle! Sağ taraftaki kutucuklardan farklı kombinleri seçerek ana karakterimizin kıyafetlerini dönüştürebilir, özel animasyonlarını, yazılarını ve ses efektlerini deneyimleyebilirsin.</p>
         <button class="menu-btn" onclick="showMenu()">Ana Menüye Dön</button>
     </div>
 
@@ -45,74 +45,9 @@
                 <div id="speechBubble" class="speech-bubble">merhaba KRI hoş geldin</div>
 
                 <div class="image-wrapper" id="imageWrapper">
-                    <!-- Birebir Koda Çizilmiş 3D Tarzı Vektörel Karakter -->
-                    <svg id="characterSvg" viewBox="0 0 300 420" width="100%" height="100%">
-                        <!-- Arka Gölge/Işıltı -->
-                        <ellipse cx="150" cy="405" rx="70" ry="10" fill="rgba(0,0,0,0.3)" />
-
-                        <!-- VÜCUT VE GÖVDE KATMANI (Kombinlere göre değişir) -->
-                        <g id="bodyGroup">
-                            <!-- Bacaklar ve Ayakkabılar (Ortak) -->
-                            <rect x="115" y="270" width="30" height="135" rx="10" fill="#1e1e1e" id="leftLeg" />
-                            <rect x="155" y="270" width="30" height="135" rx="10" fill="#1e1e1e" id="rightLeg" />
-                            <path d="M105 395 L145 395 L145 410 L110 410 Z" fill="#0f0f0f" />
-                            <path d="M155 395 L195 395 L190 410 L155 410 Z" fill="#0f0f0f" />
-
-                            <!-- Gövde ve Kıyafet (Varsayılan: Beyaz Tişört) -->
-                            <g id="outfitGroup">
-                                <path d="M100 160 Q150 150 200 160 L190 275 Q150 285 110 275 Z" fill="#ffffff" id="torsoPath" />
-                                <!-- Kollar -->
-                                <path d="M100 160 Q80 200 85 240 L105 245 L115 180 Z" fill="#fcd3b5" />
-                                <path d="M200 160 Q220 200 215 240 L195 245 L185 180 Z" fill="#fcd3b5" />
-                            </g>
-                        </g>
-
-                        <!-- KAFA VE YÜZ KATMANI (Birebir Tasarım) -->
-                        <g id="headGroup">
-                            <!-- Boyun -->
-                            <rect x="135" y="135" width="30" height="35" rx="8" fill="#fcd3b5" />
-
-                            <!-- Kulaklar -->
-                            <circle cx="107" cy="115" r="10" fill="#fcd3b5" />
-                            <circle cx="193" cy="115" r="10" fill="#fcd3b5" />
-
-                            <!-- Yüz / Kafa Tabanı -->
-                            <path d="M110 95 Q150 75 190 95 Q205 130 190 175 Q150 195 110 175 Q95 130 110 95 Z" fill="#fcd3b5" />
-
-                            <!-- Gözler (Canlı 3D Bakış) -->
-                            <ellipse cx="132" cy="122" rx="11" ry="13" fill="#2d1508" />
-                            <ellipse cx="168" cy="122" rx="11" ry="13" fill="#2d1508" />
-                            <!-- Göz Parlamaları -->
-                            <circle cx="129" cy="118" r="4" fill="#ffffff" />
-                            <circle cx="165" cy="118" r="4" fill="#ffffff" />
-                            <circle cx="134" cy="126" r="1.5" fill="#ffffff" />
-                            <circle cx="170" cy="126" r="1.5" fill="#ffffff" />
-
-                            <!-- Kaşlar -->
-                            <path d="M120 106 Q132 100 144 107" stroke="#1a0f08" stroke-width="3" stroke-linecap="round" fill="none" />
-                            <path d="M156 107 Q168 100 180 106" stroke="#1a0f08" stroke-width="3" stroke-linecap="round" fill="none" />
-
-                            <!-- Burun -->
-                            <path d="M148 132 Q150 142 153 140" stroke="#e0a886" stroke-width="2.5" stroke-linecap="round" fill="none" />
-
-                            <!-- Hafif Gülümseme -->
-                            <path d="M138 152 Q150 162 162 152" stroke="#b86b46" stroke-width="3" stroke-linecap="round" fill="none" />
-
-                            <!-- SAÇ STİLİ (Görseldeki gibi gür siyah saçlar) -->
-                            <path d="M108 105 Q100 70 135 60 Q150 45 175 60 Q200 75 192 110 Q205 90 195 70 Q175 40 145 45 Q110 40 98 75 Q90 95 108 105 Z" fill="#111827" />
-                            <!-- Alın / Kakül Detayları -->
-                            <path d="M110 95 Q130 115 145 98 Q165 115 185 95 Q170 80 150 90 Q130 80 110 95 Z" fill="#111827" />
-                        </g>
-
-                        <!-- KOLYE (Karakterin ikonik kolyesi) -->
-                        <g id="necklaceGroup">
-                            <path d="M130 155 Q150 180 170 155" stroke="#94a3b8" stroke-width="2" fill="none" />
-                            <path d="M147 170 L153 170 L150 178 Z" fill="#cbd5e1" />
-                        </g>
-
-                        <!-- AKSESUAR / EFEKT KATMANI (Mikrofon, Kalp vb.) -->
-                        <g id="accessoryGroup"></g>
-                    </svg>
+                    <!-- Yüklediğin ana karakter görseli -->
+                    <img id="characterImage" src="ana karakter.png" alt="Ana Karakter">
+                    <div id="accessoryOverlay" class="accessory-overlay"></div>
                 </div>
 
                 <div class="outfit-badge" id="outfitBadge">Ana Kombin: Beyaz Tişört & Siyah Pantolon</div>
@@ -121,7 +56,7 @@
             <div class="wardrobe-panel">
                 <h3>Kıyafet Kutucukları</h3>
                 <div class="outfit-options">
-                    <button class="outfit-btn active" onclick="switchOutfit(1, 'Ana Kombin: Beyaz Tişört & Siyah Pantolon', 'kisabirara.m4a', 'merhaba KRI hoş geldin', 'outfit1', '')">
+                    <button class="outfit-btn active" onclick="switchOutfit(1, 'Ana Kombin: Beyaz Tişört & Siyah Pantolon', 'kisabirara.m4a', 'merhaba KRI hoş geldin', '')">
                         <div class="icon-box"><i class="fa-solid fa-shirt"></i></div>
                         <div class="outfit-info">
                             <h4>1. Ana Kombin</h4>
@@ -129,91 +64,91 @@
                         </div>
                     </button>
 
-                    <button class="outfit-btn" onclick="switchOutfit(2, 'İkinci Kombin: Lacivert Kolej Ceketi', 'tanitim.m4a', '', 'outfit2', 'wave')">
+                    <button class="outfit-btn" onclick="switchOutfit(2, 'İkinci Kombin: Lacivert Kolej Ceketi', 'tanitim.m4a', '', 'wave')">
                         <div class="icon-box"><i class="fa-solid fa-vest"></i></div>
                         <div class="outfit-info">
                             <h4>2. İkinci Kombin</h4>
-                            <p>Lacivert kolej ceketi & El sallama</p>
+                            <p>El sallama efekti</p>
                         </div>
                     </button>
 
-                    <button class="outfit-btn" onclick="switchOutfit(3, 'Üçüncü Kombin: Denim & Beyaz Ceket', 'someone.m4a', '', 'outfit3', 'sing')">
+                    <button class="outfit-btn" onclick="switchOutfit(3, 'Üçüncü Kombin: Denim & Beyaz Ceket', 'someone.m4a', '', 'sing')">
                         <div class="icon-box"><i class="fa-solid fa-vest"></i></div>
                         <div class="outfit-info">
                             <h4>3. Üçüncü Kombin</h4>
-                            <p>Denim ceket & Şarkı söylermiş gibi</p>
+                            <p>Şarkı söylermiş gibi performans</p>
                         </div>
                     </button>
 
-                    <button class="outfit-btn" onclick="switchOutfit(4, 'Dördüncü Kombin: Kahverengi Deri Ceket & Şort', 'dracula.m4a', '', 'outfit4', 'scare')">
+                    <button class="outfit-btn" onclick="switchOutfit(4, 'Dördüncü Kombin: Kahverengi Deri Ceket & Şort', 'dracula.m4a', '', 'scare')">
                         <div class="icon-box"><i class="fa-solid fa-jacket-sub-o"></i></div>
                         <div class="outfit-info">
                             <h4>4. Dördüncü Kombin</h4>
-                            <p>Deri ceket & Korkutma efekti</p>
+                            <p>Korkutma efekti</p>
                         </div>
                     </button>
 
-                    <button class="outfit-btn" onclick="switchOutfit(5, 'Beşinci Kombin: Yazılı Triko & Şort', 'dynimate.m4a', '', 'outfit5', 'fall')">
+                    <button class="outfit-btn" onclick="switchOutfit(5, 'Beşinci Kombin: Yazılı Triko & Şort', 'dynimate.m4a', '', 'fall')">
                         <div class="icon-box"><i class="fa-solid fa-vest-patches"></i></div>
                         <div class="outfit-info">
                             <h4>5. Beşinci Kombin</h4>
-                            <p>Triko kazak & Geriye düşme</p>
+                            <p>Patlama ile geriye düşme</p>
                         </div>
                     </button>
 
-                    <button class="outfit-btn" onclick="switchOutfit(6, 'Altıncı Kombin: Mavi Yelek & Geniş Kot', 'simarik.m4a', '', 'outfit6', 'circle')">
+                    <button class="outfit-btn" onclick="switchOutfit(6, 'Altıncı Kombin: Mavi Yelek & Geniş Kot', 'simarik.m4a', '', 'circle')">
                         <div class="icon-box"><i class="fa-solid fa-cloud"></i></div>
                         <div class="outfit-info">
                             <h4>6. Altıncı Kombin</h4>
-                            <p>Mavi yelek & İşaret parmağı dairesi</p>
+                            <p>İşaret parmağıyla daire çizme</p>
                         </div>
                     </button>
 
-                    <button class="outfit-btn" onclick="switchOutfit(7, 'Yedinci Kombin: Kaşif Tarzı', 'oylebir.m4a', '', 'outfit7', 'mic')">
+                    <button class="outfit-btn" onclick="switchOutfit(7, 'Yedinci Kombin: Kaşif Tarzı', 'oylebir.m4a', '', 'mic')">
                         <div class="icon-box"><i class="fa-solid fa-hat-cowboy"></i></div>
                         <div class="outfit-info">
                             <h4>7. Yedinci Kombin</h4>
-                            <p>Kaşif ceketi, şapka & Mikrofon</p>
+                            <p>Mikrofonla şarkı söyleme</p>
                         </div>
                     </button>
 
-                    <button class="outfit-btn" onclick="switchOutfit(8, 'Sekizinci Kombin: Mavi Kapüşonlu & Patchwork Kot', 'benimol.m4a', '', 'outfit8', 'heart')">
+                    <button class="outfit-btn" onclick="switchOutfit(8, 'Sekizinci Kombin: Mavi Kapüşonlu & Patchwork Kot', 'benimol.m4a', '', 'heart')">
                         <div class="icon-box"><i class="fa-solid fa-masks-theater"></i></div>
                         <div class="outfit-info">
                             <h4>8. Sekizinci Kombin</h4>
-                            <p>Mavi kapüşonlu & Kalp gösterme</p>
+                            <p>Kalp gösterme hareketi</p>
                         </div>
                     </button>
 
-                    <button class="outfit-btn" onclick="switchOutfit(9, 'Dokuzuncu Kombin: Krem Takım Elbise', 'cakkri.m4a', 'YUH!', 'outfit9', 'dance')">
+                    <button class="outfit-btn" onclick="switchOutfit(9, 'Dokuzuncu Kombin: Krem Takım Elbise', 'cakkri.m4a', 'YUH!', 'dance')">
                         <div class="icon-box"><i class="fa-solid fa-user-tie"></i></div>
                         <div class="outfit-info">
                             <h4>9. Dokuzuncu Kombin</h4>
-                            <p>Krem takım elbise & Yuh yazısı / Dans</p>
+                            <p>Yuh yazısı ve dans</p>
                         </div>
                     </button>
 
-                    <button class="outfit-btn" onclick="switchOutfit(10, 'Onuncu Kombin: Yeşil Sokak Stili', 'mevlamkayira.m4a', '🤏🏻', 'outfit10', 'pinch')">
+                    <button class="outfit-btn" onclick="switchOutfit(10, 'Onuncu Kombin: Yeşil Sokak Stili', 'mevlamkayira.m4a', '🤏🏻', 'pinch')">
                         <div class="icon-box"><i class="fa-solid fa-hat-baseball"></i></div>
                         <div class="outfit-info">
                             <h4>10. Onuncu Kombin</h4>
-                            <p>Yeşil 777 tişört, kep & 🤏🏻 işareti</p>
+                            <p>🤏🏻 İşareti ve Mikrofon</p>
                         </div>
                     </button>
 
-                    <button class="outfit-btn" onclick="switchOutfit(11, 'On Birinci Kombin: Konser Sahnesi', 'krikri.m4a', '😄', 'outfit11', 'sit')">
+                    <button class="outfit-btn" onclick="switchOutfit(11, 'On Birinci Kombin: Konser Sahnesi', 'krikri.m4a', '😄', 'sit')">
                         <div class="icon-box"><i class="fa-solid fa-microphone-lines"></i></div>
                         <div class="outfit-info">
                             <h4>11. On Birinci Kombin</h4>
-                            <p>Siyah deri ceket & Koltukta oturma</p>
+                            <p>Koltukta oturma ve gülme</p>
                         </div>
                     </button>
 
-                    <button class="outfit-btn" onclick="switchOutfit(12, 'On İkinci Kombin: Siyah Kapüşonlu & Gri Eşofman', 'cildircam.m4a', 'ÇILLDIRCAAM', 'outfit12', 'crazy')">
+                    <button class="outfit-btn" onclick="switchOutfit(12, 'On İkinci Kombin: Siyah Kapüşonlu & Gri Eşofman', 'cildircam.m4a', 'ÇILLDIRCAAM', 'crazy')">
                         <div class="icon-box"><i class="fa-solid fa-hoodie"></i></div>
                         <div class="outfit-info">
                             <h4>12. On İkinci Kombin</h4>
-                            <p>Siyah kapüşonlu & ÇILLDIRCAAM yazısı</p>
+                            <p>ÇILLDIRCAAM yazısı</p>
                         </div>
                     </button>
                 </div>
@@ -231,5 +166,5 @@
 <audio id="soundPlayer" src="kisabirara.m4a" loop></audio>
 <script src="script.js"></script>
 </body>
-    </html>
-                                                  
+                                </html>
+                            
