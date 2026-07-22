@@ -30,7 +30,7 @@
     <!-- How to Play Screen -->
     <div id="howToPlayScreen" class="screen">
         <h2>Nasıl Oynanır?</h2>
-        <p>Oyuna başladıktan sonra stüdyo ortamında karakterimizi ekranda göreceksin. Sağ taraftaki kutucuklardan farklı kombinleri seçerek karakterimize kıyafetler giydirebilirsin. Her kıyafet değişiminde arka planda özel ses efektleri çalacaktır!</p>
+        <p>Oyuna başladıktan sonra stüdyo ortamında karakterimizi ekranda göreceksin. Sağ taraftaki kutucuklardan farklı kombinleri seçerek karakterimize kıyafetler giydirebilirsin. Her kıyafet değişiminde özel animasyonlar, yazılar ve sesler aktif olacaktır!</p>
         <button class="menu-btn" onclick="showMenu()">Ana Menüye Dön</button>
     </div>
 
@@ -41,7 +41,11 @@
         </div>
         <div class="game-content">
             <div class="character-card">
-                <div class="image-wrapper">
+                <!-- Özel Konuşma Kutucuğu ve Efekt Katmanı -->
+                <div id="speechBubble" class="speech-bubble">merhaba KRI hoş geldin</div>
+                <div id="actionEffectOverlay" class="action-effect-overlay"></div>
+
+                <div class="image-wrapper" id="imageWrapper">
                     <img id="characterImage" src="25171.png" alt="Karakter Görseli">
                 </div>
                 <div class="outfit-badge" id="outfitBadge">Ana Kombin: Beyaz Tişört & Siyah Pantolon</div>
@@ -50,99 +54,99 @@
             <div class="wardrobe-panel">
                 <h3>Kıyafet Kutucukları</h3>
                 <div class="outfit-options">
-                    <button class="outfit-btn active" onclick="switchOutfit(1, '25171.png', 'Ana Kombin: Beyaz Tişört & Siyah Pantolon', 'kisabirara.m4a')">
+                    <button class="outfit-btn active" onclick="switchOutfit(1, '25171.png', 'Ana Kombin: Beyaz Tişört & Siyah Pantolon', 'kisabirara.m4a', 'merhaba KRI hoş geldin', '')">
                         <div class="icon-box"><i class="fa-solid fa-shirt"></i></div>
                         <div class="outfit-info">
                             <h4>1. Ana Kombin</h4>
-                            <p>Beyaz tişört ve siyah pantolon (kisabirara.m4a)</p>
+                            <p>Karşılama ve Karakter Sahnesi</p>
                         </div>
                     </button>
 
-                    <button class="outfit-btn" onclick="switchOutfit(2, '25173.png', 'İkinci Kombin: Lacivert Kolej Ceketi', 'tanitim.m4a')">
+                    <button class="outfit-btn" onclick="switchOutfit(2, '25173.png', 'İkinci Kombin: Lacivert Kolej Ceketi', 'tanitim.m4a', '', 'wave')">
                         <div class="icon-box"><i class="fa-solid fa-vest"></i></div>
                         <div class="outfit-info">
                             <h4>2. İkinci Kombin</h4>
-                            <p>Lacivert kolej ceketi ve pantolon</p>
+                            <p>El sallama efekti</p>
                         </div>
                     </button>
 
-                    <button class="outfit-btn" onclick="switchOutfit(3, '25174.png', 'Üçüncü Kombin: Denim & Beyaz Ceket', 'someone.m4a')">
+                    <button class="outfit-btn" onclick="switchOutfit(3, '25174.png', 'Üçüncü Kombin: Denim & Beyaz Ceket', 'someone.m4a', '', 'sing')">
                         <div class="icon-box"><i class="fa-solid fa-vest"></i></div>
                         <div class="outfit-info">
                             <h4>3. Üçüncü Kombin</h4>
-                            <p>Denim ve beyaz panelli ceket</p>
+                            <p>Şarkı söylermiş gibi performans</p>
                         </div>
                     </button>
 
-                    <button class="outfit-btn" onclick="switchOutfit(4, '25175.png', 'Dördüncü Kombin: Kahverengi Deri Ceket & Şort', 'dracula.m4a')">
+                    <button class="outfit-btn" onclick="switchOutfit(4, '25175.png', 'Dördüncü Kombin: Kahverengi Deri Ceket & Şort', 'dracula.m4a', '', 'scare')">
                         <div class="icon-box"><i class="fa-solid fa-jacket-sub-o"></i></div>
                         <div class="outfit-info">
                             <h4>4. Dördüncü Kombin</h4>
-                            <p>Kahverengi, siyah şort ve tül detaylı bluz</p>
+                            <p>Korkutma efekti</p>
                         </div>
                     </button>
 
-                    <button class="outfit-btn" onclick="switchOutfit(5, '25179.png', 'Beşinci Kombin: Yazılı Triko & Şort', 'dynimate.m4a')">
+                    <button class="outfit-btn" onclick="switchOutfit(5, '25179.png', 'Beşinci Kombin: Yazılı Triko & Şort', 'dynimate.m4a', '', 'fall')">
                         <div class="icon-box"><i class="fa-solid fa-vest-patches"></i></div>
                         <div class="outfit-info">
                             <h4>5. Beşinci Kombin</h4>
-                            <p>Yazılı/gazete desenli triko kazak, açık renk şort ve bandana</p>
+                            <p>Patlama ile geriye düşme</p>
                         </div>
                     </button>
 
-                    <button class="outfit-btn" onclick="switchOutfit(6, '25182.png', 'Altıncı Kombin: Mavi Yelek & Geniş Kot', 'simarik.m4a')">
+                    <button class="outfit-btn" onclick="switchOutfit(6, '25182.png', 'Altıncı Kombin: Mavi Yelek & Geniş Kot', 'simarik.m4a', '', 'circle')">
                         <div class="icon-box"><i class="fa-solid fa-cloud"></i></div>
                         <div class="outfit-info">
                             <h4>6. Altıncı Kombin</h4>
-                            <p>Parlak mavi puffer yelek, geniş paçalı açık renk kot ve kolye</p>
+                            <p>İşaret parmağıyla daire çizme</p>
                         </div>
                     </button>
 
-                    <button class="outfit-btn" onclick="switchOutfit(7, '25158.png', 'Yedinci Kombin: Kaşif Tarzı', 'oylebir.m4a')">
+                    <button class="outfit-btn" onclick="switchOutfit(7, '25158.png', 'Yedinci Kombin: Kaşif Tarzı', 'oylebir.m4a', '', 'mic')">
                         <div class="icon-box"><i class="fa-solid fa-hat-cowboy"></i></div>
                         <div class="outfit-info">
                             <h4>7. Yedinci Kombin</h4>
-                            <p>Taba deri ceket, kahverengi pantolon, desenli gömlek ve şapka</p>
+                            <p>Mikrofonla şarkı söyleme</p>
                         </div>
                     </button>
 
-                    <button class="outfit-btn" onclick="switchOutfit(8, '25183.png', 'Sekizinci Kombin: Mavi Kapüşonlu & Patchwork Kot', 'benimol.m4a')">
+                    <button class="outfit-btn" onclick="switchOutfit(8, '25183.png', 'Sekizinci Kombin: Mavi Kapüşonlu & Patchwork Kot', 'benimol.m4a', '', 'heart')">
                         <div class="icon-box"><i class="fa-solid fa-masks-theater"></i></div>
                         <div class="outfit-info">
                             <h4>8. Sekizinci Kombin</h4>
-                            <p>Mavi kapüşonlu üst, mavi-siyah patchwork kot ve zincir detay</p>
+                            <p>Kalp gösterme hareketi</p>
                         </div>
                     </button>
 
-                    <button class="outfit-btn" onclick="switchOutfit(9, '25184.png', 'Dokuzuncu Kombin: Krem Takım Elbise', 'cakkri.m4a')">
+                    <button class="outfit-btn" onclick="switchOutfit(9, '25184.png', 'Dokuzuncu Kombin: Krem Takım Elbise', 'cakkri.m4a', 'YUH!', 'dance')">
                         <div class="icon-box"><i class="fa-solid fa-user-tie"></i></div>
                         <div class="outfit-info">
                             <h4>9. Dokuzuncu Kombin</h4>
-                            <p>Krem rengi takım elbise, koyu mavi gömlek ve benekli kravat</p>
+                            <p>Yuh yazısı ve dans</p>
                         </div>
                     </button>
 
-                    <button class="outfit-btn" onclick="switchOutfit(10, '25187.png', 'Onuncu Kombin: Yeşil Sokak Stili', 'mevlamkayira.m4a')">
+                    <button class="outfit-btn" onclick="switchOutfit(10, '25187.png', 'Onuncu Kombin: Yeşil Sokak Stili', 'mevlamkayira.m4a', '🤏🏻', 'pinch')">
                         <div class="icon-box"><i class="fa-solid fa-hat-baseball"></i></div>
                         <div class="outfit-info">
                             <h4>10. Onuncu Kombin</h4>
-                            <p>Yeşil 777 tişört, kargo pantolon, yeşil kep ve spor ayakkabı</p>
+                            <p>🤏🏻 İşareti ve Mikrofon</p>
                         </div>
                     </button>
 
-                    <button class="outfit-btn" onclick="switchOutfit(11, '25188.png', 'On Birinci Kombin: Konser Sahnesi', 'krikri.m4a')">
+                    <button class="outfit-btn" onclick="switchOutfit(11, '25188.png', 'On Birinci Kombin: Konser Sahnesi', 'krikri.m4a', '😄', 'sit')">
                         <div class="icon-box"><i class="fa-solid fa-microphone-lines"></i></div>
                         <div class="outfit-info">
                             <h4>11. On Birinci Kombin</h4>
-                            <p>Siyah deri ceket, zımbalı kemer, geniş kot ve mikrofonlu sahne pozu</p>
+                            <p>Koltukta oturma ve gülme</p>
                         </div>
                     </button>
 
-                    <button class="outfit-btn" onclick="switchOutfit(12, '25191.png', 'On İkinci Kombin: Siyah Kapüşonlu & Gri Eşofman', 'cildircam.m4a')">
+                    <button class="outfit-btn" onclick="switchOutfit(12, '25191.png', 'On İkinci Kombin: Siyah Kapüşonlu & Gri Eşofman', 'cildircam.m4a', 'ÇILLDIRCAAM', 'crazy')">
                         <div class="icon-box"><i class="fa-solid fa-hoodie"></i></div>
                         <div class="outfit-info">
                             <h4>12. On İkinci Kombin</h4>
-                            <p>Siyah fermuarlı kapüşonlu üst, siyah tişört ve gri eşofman altı</p>
+                            <p>ÇILLDIRCAAM yazısı</p>
                         </div>
                     </button>
                 </div>
@@ -160,5 +164,5 @@
 <audio id="soundPlayer" src="kisabirara.m4a" loop></audio>
 <script src="script.js"></script>
 </body>
-  </html>
-  
+                            </html>
+                            
