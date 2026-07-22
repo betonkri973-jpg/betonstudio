@@ -29,12 +29,15 @@ function startGame() {
     document.getElementById('gameScreen').classList.add('active');
 }
 
-// Kombinlere göre kıyafet, renk ve aksesuar tasarımlarını oluşturan fonksiyon
-function switchOutfit(id, badgeText, audioFile, bubbleText, outfitType, animClass) {
+function switchOutfit(id, badgeText, audioFile, bubbleText, animClass) {
     const buttons = document.querySelectorAll('.outfit-btn');
     buttons.forEach(btn => btn.classList.remove('active'));
     event.currentTarget.classList.add('active');
 
+    const img = document.getElementById('characterImage');
+    
+    // Ana karakter görseli sabit kalır, kombinlere göre hafif renk tonu veya filtre değişimi ile uyum sağlanır
+    img.src = "ana karakter.png";
     document.getElementById('outfitBadge').innerText = badgeText;
 
     // Konuşma balonu kontrolü
@@ -46,85 +49,25 @@ function switchOutfit(id, badgeText, audioFile, bubbleText, outfitType, animClas
         bubble.style.display = 'none';
     }
 
-    // Kıyafet ve Renk Değişimleri (SVG üzerinde anlık çizim güncellemesi)
-    const torsoPath = document.getElementById('torsoPath');
-    const leftLeg = document.getElementById('leftLeg');
-    const rightLeg = document.getElementById('rightLeg');
-    const accessoryGroup = document.getElementById('accessoryGroup');
-    accessoryGroup.innerHTML = ""; // Önceki aksesuarları temizle
+    // Kombine özel renk tonu filtreleri (Kıyafet değişimi hissi için)
+    img.style.filter = "none";
+    if (id === 2) img.style.filter = "hue-rotate(180deg) saturate(1.2)"; // Lacivert tonu
+    else if (id === 3) img.style.filter = "hue-rotate(190deg) brightness(1.1)"; // Denim tonu
+    else if (id === 4) img.style.filter = "sepia(0.6) hue-rotate(-30deg)"; // Kahverengi deri tonu
+    else if (id === 5) img.style.filter = "hue-rotate(40deg) saturate(1.3)"; // Triko tonu
+    else if (id === 6) img.style.filter = "hue-rotate(210deg)"; // Mavi tonu
+    else if (id === 7) img.style.filter = "sepia(0.4)"; // Kaşif tonu
+    else if (id === 8) img.style.filter = "hue-rotate(200deg) brightness(0.9)"; // Mavi kapüşonlu
+    else if (id === 9) img.style.filter = "sepia(0.3) brightness(1.2)"; // Krem takım
+    else if (id === 10) img.style.filter = "hue-rotate(110deg) saturate(1.3)"; // Yeşil sokak stili
+    else if (id === 11) img.style.filter = "grayscale(0.8) contrast(1.2)"; // Konser sahnesi
+    else if (id === 12) img.style.filter = "grayscale(0.5) brightness(0.8)"; // Siyah kapüşonlu
 
-    switch(outfitType) {
-        case 'outfit1': // Beyaz Tişört & Siyah Pantolon
-            torsoPath.setAttribute('fill', '#ffffff');
-            leftLeg.setAttribute('fill', '#1e1e1e');
-            rightLeg.setAttribute('fill', '#1e1e1e');
-            break;
-        case 'outfit2': // Lacivert Kolej Ceketi
-            torsoPath.setAttribute('fill', '#1e3a8a');
-            leftLeg.setAttribute('fill', '#1e1e1e');
-            rightLeg.setAttribute('fill', '#1e1e1e');
-            break;
-        case 'outfit3': // Denim & Beyaz Ceket
-            torsoPath.setAttribute('fill', '#38bdf8');
-            leftLeg.setAttribute('fill', '#0284c7');
-            rightLeg.setAttribute('fill', '#0284c7');
-            break;
-        case 'outfit4': // Kahverengi Deri Ceket & Şort
-            torsoPath.setAttribute('fill', '#78350f');
-            leftLeg.setAttribute('fill', '#292524');
-            rightLeg.setAttribute('fill', '#292524');
-            break;
-        case 'outfit5': // Yazılı Triko & Şort
-            torsoPath.setAttribute('fill', '#f59e0b');
-            leftLeg.setAttribute('fill', '#334155');
-            rightLeg.setAttribute('fill', '#334155');
-            break;
-        case 'outfit6': // Mavi Yelek & Geniş Kot
-            torsoPath.setAttribute('fill', '#60a5fa');
-            leftLeg.setAttribute('fill', '#1d4ed8');
-            rightLeg.setAttribute('fill', '#1d4ed8');
-            break;
-        case 'outfit7': // Kaşif Tarzı (Mikrofonlu)
-            torsoPath.setAttribute('fill', '#d97706');
-            leftLeg.setAttribute('fill', '#451a03');
-            rightLeg.setAttribute('fill', '#451a03');
-            // Mikrofon aksesuarı
-            accessoryGroup.innerHTML = '<path d="M195 210 L210 200 L215 215" stroke="#64748b" stroke-width="3" fill="none"/><circle cx="212" cy="197" r="5" fill="#cbd5e1"/>';
-            break;
-        case 'outfit8': // Mavi Kapüşonlu & Patchwork Kot
-            torsoPath.setAttribute('fill', '#2563eb');
-            leftLeg.setAttribute('fill', '#1e40af');
-            rightLeg.setAttribute('fill', '#1e3a8a');
-            break;
-        case 'outfit9': // Krem Takım Elbise
-            torsoPath.setAttribute('fill', '#fef3c7');
-            leftLeg.setAttribute('fill', '#d97706');
-            rightLeg.setAttribute('fill', '#d97706');
-            break;
-        case 'outfit10': // Yeşil Sokak Stili (Mikrofonlu)
-            torsoPath.setAttribute('fill', '#10b981');
-            leftLeg.setAttribute('fill', '#047857');
-            rightLeg.setAttribute('fill', '#047857');
-            accessoryGroup.innerHTML = '<path d="M195 210 L210 200 L215 215" stroke="#64748b" stroke-width="3" fill="none"/><circle cx="212" cy="197" r="5" fill="#cbd5e1"/>';
-            break;
-        case 'outfit11': // Konser Sahnesi (Deri Ceket)
-            torsoPath.setAttribute('fill', '#0f172a');
-            leftLeg.setAttribute('fill', '#000000');
-            rightLeg.setAttribute('fill', '#000000');
-            break;
-        case 'outfit12': // Siyah Kapüşonlu & Gri Eşofman
-            torsoPath.setAttribute('fill', '#1e293b');
-            leftLeg.setAttribute('fill', '#64748b');
-            rightLeg.setAttribute('fill', '#64748b');
-            break;
-    }
-
-    // Karakter SVG Animasyon Sınıfı
-    const svgEl = document.getElementById('characterSvg');
-    svgEl.className = "";
+    // Karakter Hareket Animasyonu
+    img.className = "";
     if (animClass) {
-        void svgEl.offsetWidth; // Reflow
-        svgEl.classList.add("anim-" + animClass);
+        void img.offsetWidth; // Reflow
+        img.classList.add("anim-" + animClass);
     }
 
     // Ses yönetimi
@@ -136,5 +79,4 @@ function switchOutfit(id, badgeText, audioFile, bubbleText, outfitType, animClas
         console.log("Audio file playback waiting:", e);
     });
     soundText.innerText = "Çalan Ses Dosyası: " + audioFile;
-    }
-                
+}
